@@ -6,18 +6,13 @@ from matplotlib import pyplot as plt
 
 def get_path_list(root_path):
 
-    classifier = cv.CascadeClassifier('haarcascades\haarcascade_frontalface_default.xml')
-
-    train_path = './dataset/train'
-    train_images = os.listdir (train_path) 
-
+    train_images = os.listdir (root_path) 
     path_list = list()
 
     for idx, folder_name in enumerate(train_images):
-        images_path = os.listdir (f'{train_path}/{folder_name}')
+        images_path = os.listdir (f'{root_path}/{folder_name}')
         for image in images_path:
-            full_train_path = f'{train_path}/{folder_name}/{image}'
-           
+            full_train_path = f'{root_path}/{folder_name}/{image}'
             path_list.append (full_train_path)
     
     print (path_list)
