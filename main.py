@@ -5,21 +5,24 @@ import math
 from matplotlib import pyplot as plt
 
 def get_path_list(root_path):
+
+    classifier = cv.CascadeClassifier('haarcascades\haarcascade_frontalface_default.xml')
+
     train_path = './dataset/train'
     train_images = os.listdir (train_path) 
-    print (train_images)
 
-    face_list = list()
+    path_list = list()
 
     for idx, folder_name in enumerate(train_images):
         images_path = os.listdir (f'{train_path}/{folder_name}')
         for image in images_path:
             full_train_path = f'{train_path}/{folder_name}/{image}'
+           
+            path_list.append (full_train_path)
+    
+    print (path_list)
+    return path_list
 
-            img = cv.imread(full_train_path, 0)
-
-            detected_face = classifier.detectMultiScale (img, scaleFactor = 1.3, minNeighbors = 5)
-            
     '''
         To get a list of path directories from root path
 
@@ -187,9 +190,9 @@ if __name__ == "__main__":
     '''
 
     train_names = get_path_list(train_root_path) #labels_list
-    train_image_list, image_classes_list = get_class_id(train_root_path, train_names) #faces, indexes
-    train_face_grays, _, filtered_classes_list = detect_faces_and_filter(train_image_list, image_classes_list)
-    recognizer = train(train_face_grays, filtered_classes_list)
+    # train_image_list, image_classes_list = get_class_id(train_root_path, train_names) #faces, indexes
+    # train_face_grays, _, filtered_classes_list = detect_faces_and_filter(train_image_list, image_classes_list)
+    # recognizer = train(train_face_grays, filtered_classes_list)
 
     '''
         Please modify train_root_path value according to the location of
@@ -206,9 +209,9 @@ if __name__ == "__main__":
         -------------------
     '''
 
-    test_image_list = get_test_images_data(test_root_path)
-    test_faces_gray, test_faces_rects, _ = detect_faces_and_filter(test_image_list)
-    predict_results = predict(recognizer, test_faces_gray)
-    predicted_test_image_list = draw_prediction_results(predict_results, test_image_list, test_faces_rects, train_names)
+    # test_image_list = get_test_images_data(test_root_path)
+    # test_faces_gray, test_faces_rects, _ = detect_faces_and_filter(test_image_list)
+    # predict_results = predict(recognizer, test_faces_gray)
+    # predicted_test_image_list = draw_prediction_results(predict_results, test_image_list, test_faces_rects, train_names)
     
-    combine_and_show_result(predicted_test_image_list)
+    # combine_and_show_result(predicted_test_image_list)
