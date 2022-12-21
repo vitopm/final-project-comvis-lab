@@ -7,16 +7,12 @@ from matplotlib import pyplot as plt
 def get_path_list(root_path):
 
     train_images = os.listdir (root_path) 
-    path_list = list()
+    train_list = list()
 
-    for idx, folder_name in enumerate(train_images):
-        images_path = os.listdir (f'{root_path}/{folder_name}')
-        for image in images_path:
-            full_train_path = f'{root_path}/{folder_name}/{image}'
-            path_list.append (full_train_path)
+    for folder_name in enumerate(train_images):
+        train_list.append(folder_name)
     
-    print (path_list)
-    return path_list
+    return train_list
 
     '''
         To get a list of path directories from root path
@@ -185,7 +181,9 @@ if __name__ == "__main__":
     '''
 
     train_names = get_path_list(train_root_path) #labels_list
-    # train_image_list, image_classes_list = get_class_id(train_root_path, train_names) #faces, indexes
+    print (train_root_path)
+    print (train_names)
+    train_image_list, image_classes_list = get_class_id(train_root_path, train_names) #faces, indexes
     # train_face_grays, _, filtered_classes_list = detect_faces_and_filter(train_image_list, image_classes_list)
     # recognizer = train(train_face_grays, filtered_classes_list)
 
