@@ -5,6 +5,21 @@ import math
 from matplotlib import pyplot as plt
 
 def get_path_list(root_path):
+    train_path = './dataset/train'
+    train_images = os.listdir (train_path) 
+    print (train_images)
+
+    face_list = list()
+
+    for idx, folder_name in enumerate(train_images):
+        images_path = os.listdir (f'{train_path}/{folder_name}')
+        for image in images_path:
+            full_train_path = f'{train_path}/{folder_name}/{image}'
+
+            img = cv.imread(full_train_path, 0)
+
+            detected_face = classifier.detectMultiScale (img, scaleFactor = 1.3, minNeighbors = 5)
+            
     '''
         To get a list of path directories from root path
 
