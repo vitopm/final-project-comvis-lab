@@ -124,7 +124,7 @@ def draw_prediction_results(predict_results, test_image_list, test_faces_rects, 
             (0, 255, 0), 
             1
         )
-        
+
         if train_names[predict_result] in ['Pewdiepie', 'Jacksepticeye']:
             text = f'{train_names[predict_result]} - Youtube'
         else:
